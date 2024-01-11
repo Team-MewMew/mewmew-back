@@ -22,15 +22,34 @@ repositories {
 }
 
 dependencies {
+    // RabbitMQ
     implementation 'org.springframework.boot:spring-boot-starter-amqp'
+
+    // JPA
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+
+    // MongoDB
     implementation 'org.springframework.boot:spring-boot-starter-data-mongodb'
+
+    // OAUTH2
     implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
+
+    // Security
     implementation 'org.springframework.boot:spring-boot-starter-security'
+
+    // validation
     implementation 'org.springframework.boot:spring-boot-starter-validation'
+
+    // spring
     implementation 'org.springframework.boot:spring-boot-starter-web'
+
+    // websocket
     implementation 'org.springframework.boot:spring-boot-starter-websocket'
-    implementation 'io.springfox:springfox-boot-starter'
+
+    // swagger
+    implementation group: 'io.springfox', name: 'springfox-boot-starter', version: '3.0.0'
+
+    // aop
     implementation group: 'org.springframework.boot', name: 'spring-boot-starter-aop', version: '3.2.1'
 
     compileOnly 'org.projectlombok:lombok'
