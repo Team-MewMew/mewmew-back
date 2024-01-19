@@ -1,0 +1,39 @@
+name: Build App BE Main
+
+on:
+  pull_request:
+    branches: [main]
+
+env:
+  AWS_REGION: ap-northeast-2
+  AWS_S3_BUCKET: mewmew-be
+  AWS_CODE_DEPLOY_APPLICATION: mewmew-be-cd
+  AWS_CODE_DEPLOY_GROUP: mewmew-be-cdg
+
+jobs:
+  build-with-gradle:
+    runs-on: ubuntu-20.04
+    steps:
+    - name: Git Setup
+      uses: actions/checkout@v3
+      with:
+        ref: production
+    - name: JDK 17 install
+      uses: actions/setup-java@v3
+      with:
+        java-version: '17'
+        distribution: 'corretto'
+    - name: Chmod gradlew
+      run: chmod +x ./gradlew
+    - name: Project build
+      run: ./gradlew clean build -x test
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-region: ${{ env.AWS_REGION }}
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+    - name: Upload to s3
+      run: aws deploy push --application-name ${{ env.AWS_CODE_DEPLOY_APPLICATION }} --ignore-hidden-files --s3-location s3://$AWS_S3_BUCKET/cicdtest/$GITHUB_SHA.zip --source .
+    - name: Build to ec2
+      run: aws deploy create-deployment --application-name ${{ env.AWS_CODE_DEPLOY_APPLICATION }} --deployment-config-name CodeDeployDefault.AllAtOnce --deployment-group-name ${{ env.AWS_CODE_DEPLOY_GROUP }} --s3-location bucket=$AWS_S3_BUCKET,key=cicdtest/$GITHUB_SHA.zip,bundleType=zip
