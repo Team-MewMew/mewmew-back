@@ -6,9 +6,9 @@ on:
 
 env:
   AWS_REGION: ap-northeast-2
-  S3_BUCKET_NAME: greme-bucket
-  CODE_DEPLOY_APPLICATION_NAME: greme-codedeploy-app
-  CODE_DEPLOY_DEPLOYMENT_GROUP_NAME: greme-codedeploy-deployment-group
+  S3_BUCKET_NAME: mewmew-be
+  CODE_DEPLOY_APPLICATION_NAME: mewmew-be-cd
+  CODE_DEPLOY_DEPLOYMENT_GROUP_NAME: mewmew-be-cdg
 
 permissions:
   contents: read
