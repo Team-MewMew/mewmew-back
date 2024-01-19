@@ -11,6 +11,10 @@ java {
     sourceCompatibility = '17'
 }
 
+jar {
+    destinationDir new File("C:/Project")
+}
+
 configurations {
     compileOnly {
         extendsFrom annotationProcessor
