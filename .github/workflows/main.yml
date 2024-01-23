@@ -21,12 +21,12 @@ jobs:
           java-version: '17'
           distribution: 'corretto'
 
-      - name: Make application.properties
-        run: |
-          cd ./src/main/resources
-          touch ./application.properties
-          echo "${{ secrets.PROPERTIES }}" > ./application.properties
-        shell: bash
+      # - name: Make application.properties
+      #   run: |
+      #     cd ./src/main/resources
+      #     touch ./application.properties
+      #     echo "${{ secrets.PROPERTIES }}" > ./application.properties
+      #   shell: bash
 
       - name: Build with Gradle
         run: |
