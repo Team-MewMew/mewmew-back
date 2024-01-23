@@ -54,3 +54,4 @@ jobs:
             sudo docker rm -f $(docker ps -qa)
             sudo docker pull ${{ secrets.DOCKER_REPO }}/mewmew
             docker-compose up -d
+            sudo docker image prune -f
