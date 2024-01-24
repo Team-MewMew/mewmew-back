@@ -73,7 +73,7 @@ tasks.named('test') {
 processResources.dependsOn('copySecret')
 
 tasks.register('copySecret', Copy) {
-    from './mewmew-config'
+    from './config'
     include "*.yml"
     into 'src/main/resources'
 }

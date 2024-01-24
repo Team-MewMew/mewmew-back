@@ -1,4 +1,0 @@
-[submodule "mewmew-config"]
-	path = mewmew-config
-	url = https://github.com/Team-MewMew/mewmew-config.git
-    branch = main
