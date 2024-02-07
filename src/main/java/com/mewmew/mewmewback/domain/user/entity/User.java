@@ -7,6 +7,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.ColumnDefault;
@@ -35,4 +36,10 @@ public class User extends BaseEntity {
     @ColumnDefault("0")
     @Comment("탈퇴여부 확인 0: 활성, 1: 탈퇴")
     private Boolean userDelFlag;
+
+    @Builder
+    public User(final String email, final String nickname) {
+        this.email = email;
+        this.nickname = nickname;
+    }
 }
