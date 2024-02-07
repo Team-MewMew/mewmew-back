@@ -52,26 +52,24 @@ public class Post extends BaseEntity {
     private Music music;
 
     @Builder
-    public Post(final String postTitle, final Integer musicRating) {
+    public Post(final String postTitle, final String postContent, final Integer musicRating,
+                final User writer, final Music music) {
         this.postTitle = postTitle;
-        this.postContent = "";
+        this.postContent = isBlankContent(postContent);
         this.postHit = 0;
         this.musicRating = musicRating;
         this.postDelFlag = false;
+        this.writer = writer;
+        this.music = music;
     }
 
-    @Builder
-    public Post(final String postTitle, final String postContent, final Integer musicRating) {
-        this.postTitle = postTitle;
-        this.postContent = postContent;
-        this.postHit = 0;
-        this.musicRating = musicRating;
-        this.postDelFlag = false;
+    private static String isBlankContent(final String postContent) {
+        return postContent.isBlank() ? "" : postContent.trim();
     }
 
     public void edit(final String postTitle, final String postContent, final Integer musicRating) {
         this.postTitle = postTitle;
-        this.postContent = postContent;
+        this.postContent = isBlankContent(postContent);
         this.musicRating = musicRating;
     }
 
