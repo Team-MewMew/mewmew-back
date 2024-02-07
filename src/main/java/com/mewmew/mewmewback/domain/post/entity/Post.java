@@ -16,6 +16,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.Comment;
+import org.springframework.util.Assert;
 
 @Entity
 @Getter
@@ -61,6 +62,10 @@ public class Post extends BaseEntity {
         this.postDelFlag = false;
         this.writer = writer;
         this.music = music;
+        Assert.notNull(postTitle, "제목은 필수입니다.");
+        Assert.notNull(musicRating, "점주는 필수입니다.");
+        Assert.notNull(writer, "작성자는 필수입니다.");
+        Assert.notNull(music, "음악은 필수입니다.");
     }
 
     private static String isBlankContent(final String postContent) {
