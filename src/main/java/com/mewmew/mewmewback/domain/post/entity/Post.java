@@ -1,18 +1,24 @@
 package com.mewmew.mewmewback.domain.post.entity;
 
+import com.mewmew.mewmewback.domain.music.entity.Music;
+import com.mewmew.mewmewback.domain.user.entity.User;
 import com.mewmew.mewmewback.global.common.entity.BaseEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Lob;
+import jakarta.persistence.ManyToOne;
 import lombok.AccessLevel;
 import lombok.Builder;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.Comment;
 
 @Entity
+@Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Post extends BaseEntity {
 
@@ -24,6 +30,7 @@ public class Post extends BaseEntity {
     @Column(nullable = false)
     private String postTitle;
 
+    @Lob
     @Column(columnDefinition = "TEXT")
     private String postContent;
 
@@ -37,6 +44,12 @@ public class Post extends BaseEntity {
     @ColumnDefault("0")
     @Comment("게시글 삭제 여부 0: 삭제되지 않음, 1: 삭제")
     private Boolean postDelFlag;
+
+    @ManyToOne
+    private User writer;
+
+    @ManyToOne
+    private Music music;
 
     @Builder
     public Post(final String postTitle, final Integer musicRating) {
