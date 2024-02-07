@@ -27,7 +27,6 @@ public class Music {
     @Column(nullable = false)
     private String musicName;
 
-    @Temporal(TemporalType.TIME)
     @Column(nullable = false)
     private Time playTime;
 
