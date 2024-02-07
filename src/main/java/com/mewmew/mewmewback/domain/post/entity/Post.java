@@ -68,4 +68,19 @@ public class Post extends BaseEntity {
         this.musicRating = musicRating;
         this.postDelFlag = false;
     }
+
+    public void edit(final String postTitle, final String postContent, final Integer musicRating) {
+        this.postTitle = postTitle;
+        this.postContent = postContent;
+        this.musicRating = musicRating;
+    }
+
+    public void delete() {
+        this.postDelFlag = true;
+    }
+
+    public void view() {
+        this.postHit++;
+    }
+
 }
