@@ -4,10 +4,12 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Builder;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
 @Table
+@NoArgsConstructor
 public class Role {
 
     @Id
