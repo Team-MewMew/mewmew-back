@@ -17,6 +17,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.Comment;
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.Range;
 import org.springframework.util.Assert;
 
 @Entity
@@ -29,16 +31,19 @@ public class Post extends BaseEntity {
     private Long postNo;
 
     @NotNull
+    @Length(min = 2, max = 300)
     private String postTitle;
 
     @Lob
     @Column(columnDefinition = "TEXT")
+    @Length(max = 10000)
     private String postContent;
 
     @NotNull
     private Integer postHit;
 
     @NotNull
+    @Range(min = 1, max = 5)
     private Integer musicRating;
 
     @NotNull
