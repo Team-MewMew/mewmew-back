@@ -10,6 +10,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToOne;
+import jakarta.validation.constraints.NotNull;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -25,23 +26,23 @@ public class Post extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(nullable = false, updatable = false)
     private Long postNo;
 
-    @Column(nullable = false)
+    @NotNull
     private String postTitle;
 
     @Lob
     @Column(columnDefinition = "TEXT")
     private String postContent;
 
-    @Column(nullable = false)
+    @NotNull
     private Integer postHit;
 
-    @Column(nullable = false)
+    @NotNull
     private Integer musicRating;
 
-    @Column(nullable = false, columnDefinition = "TINYINT(1)")
+    @NotNull
+    @Column(columnDefinition = "TINYINT(1)")
     @ColumnDefault("0")
     @Comment("게시글 삭제 여부 0: 삭제되지 않음, 1: 삭제")
     private Boolean postDelFlag;
