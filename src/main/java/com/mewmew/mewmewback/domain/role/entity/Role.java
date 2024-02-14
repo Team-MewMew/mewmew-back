@@ -3,19 +3,18 @@ package com.mewmew.mewmewback.domain.role.entity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
+import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
 public class Role {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(nullable = false)
     private Long roleNo;
 
     @Size(max=50)
@@ -32,4 +31,6 @@ public class Role {
         this.roleName = roleName;
         this.roleExplain = roleExplain;
     }
+
+
 }
