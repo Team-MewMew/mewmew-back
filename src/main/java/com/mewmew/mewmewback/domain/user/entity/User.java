@@ -3,6 +3,7 @@ package com.mewmew.mewmewback.domain.user.entity;
 import com.mewmew.mewmewback.domain.role.entity.Role;
 import com.mewmew.mewmewback.global.common.entity.BaseEntity;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -17,26 +18,29 @@ public class User extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "user_no", nullable = false, unique = true, updatable = false)
+    @Column(name = "user_no")
     private Long userNo;
 
 
-    @Column(unique = true, nullable = false)
+    @NotNull
+    @Column(unique = true)
     private String email;
 
     private String password;
 
-    @Column(unique = true, nullable = false)
+    @NotNull
+    @Column(unique = true)
     private String nickname;
+  
+    @NotNull
+    @Column(name = "user_del_flag", columnDefinition = "TINYINT(1)")
+    @ColumnDefault("0")
+    @Comment("탈퇴여부 확인 0: 활성, 1: 탈퇴")
+    private Boolean userDelFlag;
 
     @ManyToOne
     @JoinColumn(name = "role_no")
     private Role role;
-
-    @Column(name = "user_del_flag", columnDefinition = "TINYINT(1)", nullable = false)
-    @ColumnDefault("0")
-    @Comment("탈퇴여부 확인 0: 활성, 1: 탈퇴")
-    private Boolean userDelFlag;
 
     @Builder
     public User(final String email, final String nickname) {
